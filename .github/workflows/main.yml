@@ -37,9 +37,7 @@ jobs:
       - name : Checkout code
         uses: actions/checkout@v4
       - name: Set up Docker
-        run: |
-          echo "DOCKER_HOST=tcp://docker:2375" >> $GITHUB_ENV  # 使用非加密端口
-          echo "DOCKER_TLS_VERIFY=" >> $GITHUB_ENV  # 禁用TLS验证
+        uses: docker/setup-buildx-action@v2 
       - name: Build in Docker
         run:  make docker-build
       - name: exec result
