@@ -25,7 +25,7 @@ jobs:
       - name: Build hello world
         run: make build
       - name: exec result
-        run: ./bin/hello
+        run: ./bin/myapp
 
   build-in-docker:
     runs-on: ubuntu-latest
