@@ -29,10 +29,19 @@ jobs:
 
   build-in-docker:
     runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged
     container: golang:latest
     steps:
       - name : Checkout code
         uses: actions/checkout@v4
+      - name: Set up Docker
+        run: |
+          echo "DOCKER_HOST=tcp://docker:2376" >> $GITHUB_ENV
+          echo "DOCKER_TLS_VERIFY=1" >> $GITHUB_ENV
+          echo "DOCKER_CERT_PATH=/certs/client" >> $GITHUB_ENV
       - name: Build in Docker
         run:  make docker-build
       - name: exec result
