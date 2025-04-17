@@ -33,15 +33,13 @@ jobs:
       docker:
         image: docker:dind
         options: --privileged
-    container: golang:latest
     steps:
       - name : Checkout code
         uses: actions/checkout@v4
       - name: Set up Docker
         run: |
-          echo "DOCKER_HOST=tcp://docker:2376" >> $GITHUB_ENV
-          echo "DOCKER_TLS_VERIFY=1" >> $GITHUB_ENV
-          echo "DOCKER_CERT_PATH=/certs/client" >> $GITHUB_ENV
+          echo "DOCKER_HOST=tcp://docker:2375" >> $GITHUB_ENV  # 使用非加密端口
+          echo "DOCKER_TLS_VERIFY=" >> $GITHUB_ENV  # 禁用TLS验证
       - name: Build in Docker
         run:  make docker-build
       - name: exec result
