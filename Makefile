@@ -13,7 +13,7 @@ all: build
 build:
 	@echo "Building $(APP_NAME) $(VERSION)..."
 	@mkdir -p $(BUILD_DIR)
-	@go build -ldflags="-X 'main.version=$(VERSION)'" -o $(BUILD_DIR)/$(APP_NAME) ./hello
+	@go build -buildvcs=false -ldflags="-X 'main.version=$(VERSION)'" -o $(BUILD_DIR)/$(APP_NAME) ./hello
 
 docker-pull:
 	@echo "Pulling $(DOCKER_IMAGE)..."
