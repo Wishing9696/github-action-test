@@ -6,7 +6,7 @@ BUILD_CONTAINER_NAME := go-builder
 GO_MOD_CACHE := $(shell go env GOMODCACHE)
 GOCACHE := $(shell go env GOCACHE)
 
-.PHONY: all build docker-pull docker-build clean
+.PHONY: all build docker-pull docker-build clean test
 
 all: build
 
@@ -35,3 +35,7 @@ clean:
 	@echo "Cleaning up..."
 	@rm -rf $(BUILD_DIR)
 	@docker rm -f $(BUILD_CONTAINER_NAME) 2>/dev/null || true
+
+test:
+	@echo "Testing $(APP_NAME) $(VERSION)..."
+	@go test -v ./hello
