@@ -23,4 +23,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build hello world
-        run: go run hello/main.go
+        run: make build
+      - name: exec result
+        run: ./bin/hello
+
+  build-in-docker:
+    runs-on: ubuntu-latest
+    container: golang:latest
+    steps:
+      - name : Checkout code
+        uses: actions/checkout@v4
+      - name: Build in Docker
+        run:  make docker-build
+      - name: exec result
+        run: ./bin/myapp
+
