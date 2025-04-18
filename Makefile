@@ -56,4 +56,4 @@ docker-image-push:
 	@docker push $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
 	@echo "Docker image $(DOCKER_REPO)/$(APP_NAME):$(VERSION) pushed successfully."
 	@echo "Run the Docker container"
-	@docker run -i --rm $(DOCKER_REPO)/$(APP_NAME):$(VERSION) .
+	@docker run -i --rm $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
