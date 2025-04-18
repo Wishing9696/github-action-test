@@ -6,7 +6,7 @@ BUILD_CONTAINER_NAME := go-builder
 GO_MOD_CACHE := $(shell go env GOMODCACHE)
 GOCACHE := $(shell go env GOCACHE)
 
-.PHONY: all build docker-pull docker-build clean test
+.PHONY: all build docker-pull docker-build clean test docker-image-build
 
 all: build
 
@@ -39,3 +39,9 @@ clean:
 test:
 	@echo "Testing $(APP_NAME) $(VERSION)..."
 	@go test -v ./hello
+
+docker-image-build:
+	@echo "Building Docker image..."
+	@docker build -t $(APP_NAME):$(VERSION) .
+	@echo "Docker image $(APP_NAME):$(VERSION) built successfully."
+	@echo "To run the Docker container, use: docker run --rm -it $(APP_NAME):$(VERSION)"
