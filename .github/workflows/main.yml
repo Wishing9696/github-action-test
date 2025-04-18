@@ -74,8 +74,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push docker mirror
         run: make docker-image-push
-      - name: exec result
-        run: docker run -i --rm wishing9696/myapp:latest
 
   get-latest-release:
     runs-on: ubuntu-latest
