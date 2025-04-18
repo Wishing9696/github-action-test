@@ -60,5 +60,5 @@ jobs:
       - name: Build hello world
         run: make docker-build
       - name: exec result
-        run: docker run -it --rm -v ${{ github.workspace }}:/app -w /app alpine:latest ./bin/myapp
+        run: docker run -i --rm -v ${{ github.workspace }}:/app -w /app alpine:latest ./bin/myapp
 
