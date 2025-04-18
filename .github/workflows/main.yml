@@ -62,3 +62,11 @@ jobs:
       - name: exec result
         run: docker run -i --rm -v ${{ github.workspace }}:/app -w /app alpine:latest ./bin/myapp
 
+  push-docker-mirror:
+    runs-on: ubuntu-latest
+    needs: [build-test]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Push docker mirror
+        run: make docker-image-push

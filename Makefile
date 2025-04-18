@@ -5,8 +5,9 @@ DOCKER_IMAGE := golang
 BUILD_CONTAINER_NAME := go-builder
 GO_MOD_CACHE := $(shell go env GOMODCACHE)
 GOCACHE := $(shell go env GOCACHE)
+DOCKER_REPO := wishing9696
 
-.PHONY: all build docker-pull docker-build clean test docker-image-build
+.PHONY: all build docker-pull docker-build clean test docker-image-build docker-image-push
 
 all: build
 
@@ -45,3 +46,12 @@ docker-image-build:
 	@docker build -t $(APP_NAME):$(VERSION) .
 	@echo "Docker image $(APP_NAME):$(VERSION) built successfully."
 	@echo "To run the Docker container, use: docker run --rm -it $(APP_NAME):$(VERSION)"
+
+docker-image-push:
+	@echo "Pushing Docker image..."
+	@echo "Building Docker image..."
+	@docker build -t $(DOCKER_REPO)/$(APP_NAME):$(VERSION) .
+	@echo "Docker image $(DOCKER_REPO)/$(APP_NAME):$(VERSION) built successfully."
+	@docker tag $(APP_NAME):$(VERSION) $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
+	@docker push $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
+	@echo "Docker image $(DOCKER_REPO)/$(APP_NAME):$(VERSION) pushed successfully."
