@@ -52,6 +52,6 @@ docker-image-push:
 	@echo "Building Docker image..."
 	@docker build -t $(DOCKER_REPO)/$(APP_NAME):$(VERSION) .
 	@echo "Docker image $(DOCKER_REPO)/$(APP_NAME):$(VERSION) built successfully."
-	@docker tag $(APP_NAME):$(VERSION) $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
+	# @docker tag $(APP_NAME):$(VERSION) $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
 	@docker push $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
 	@echo "Docker image $(DOCKER_REPO)/$(APP_NAME):$(VERSION) pushed successfully."
