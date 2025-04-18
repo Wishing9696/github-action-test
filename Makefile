@@ -45,3 +45,4 @@ docker-image-build:
 	@docker build -t $(APP_NAME):$(VERSION) .
 	@echo "Docker image $(APP_NAME):$(VERSION) built successfully."
 	@echo "To run the Docker container, use: docker run --rm -it $(APP_NAME):$(VERSION)"
+	@docker run --rm -it $(APP_NAME):$(VERSION)
