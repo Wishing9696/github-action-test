@@ -13,4 +13,5 @@ func sayHello() {
 func main() {
 	sayHello()
 	fmt.Println("This is the main function.")
+	fmt.Println("This is the main function.")
 }
